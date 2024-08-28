@@ -47,7 +47,14 @@ export function registerCompletionProvider(context: vscode.ExtensionContext) {
   const showSnippetMessageCommand = vscode.commands.registerCommand(
     'extension.showSnippetMessage',
     (snippetName: string, snippet: Snippet) => {
-      vscode.window.showInformationMessage(`"${snippetName}" snippet: ${snippet.description} with dependencies ${snippet.dependentOnHook}`);
+      let message = `"${snippetName}" snippet:`;
+      if(snippet.relatedCustomHooks.length > 0){
+        message += ` The custom hooks ${snippet.relatedCustomHooks} are available in our library. Just type ${snippet.relatedCustomHooks} to use them, and make sure to include them to avoid any errors.`;
+      }
+      if(snippet.relatedReactHooks) {
+        message += ` You can add ${snippet.relatedReactHooks} from react`;
+      }
+      vscode.window.showInformationMessage(message);
     }
   );
   context.subscriptions.push(showSnippetMessageCommand);
