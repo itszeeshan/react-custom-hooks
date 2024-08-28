@@ -55,8 +55,8 @@ Here are some of the snippets you can use:
 
 For detailed information about each hook, check out the following links:
 
-- [useFetch Documentation](https://github.com/your-username/your-extension-repo/docs/useFetch.md)
-- [useAsync Documentation](https://github.com/your-username/your-extension-repo/docs/useAsync.md)
+- [useFetch Documentation](https://github.com/itszeeshan/react-custom-hooks/docs/useFetch.md)
+- [useAsync Documentation](https://github.com/your-username/react-custom-hooks/docs/useAsync.md)
 
 ## Contributing
 
