@@ -2,7 +2,7 @@
   "name": "react-custom-hooks",
   "displayName": "React Custom Hooks",
   "description": "Insert custom react hooks to your project with autocomplete support",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "engines": {
     "vscode": "^1.92.0"
   },
