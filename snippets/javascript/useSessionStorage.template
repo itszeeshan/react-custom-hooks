@@ -1,0 +1,3 @@
+function useSessionStorage(key, defaultValue) {
+    return useStorage(key, defaultValue, window.sessionStorage)
+}

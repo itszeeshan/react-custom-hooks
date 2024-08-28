@@ -1,20 +1,12 @@
-export const useFetch = (url) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const DEFAULT_OPTIONS = {
+    headers: { "Content-Type": "application/json" },
+}
 
-  useEffect(() => {
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        setData(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        setError(error);
-        setLoading(false);
-      });
-  }, [url]);
-
-  return { data, loading, error };
-};
+export default function useFetch(url, options = {}, dependencies = []) {
+    return useAsync(() => {
+        return fetch(url, { ...DEFAULT_OPTIONS, ...options }).then(res => {
+            if (res.ok) return res.json()
+            return res.json().then(json => Promise.reject(json))
+        })
+    }, dependencies)
+}

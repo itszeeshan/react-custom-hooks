@@ -1,0 +1,3 @@
+function useLocalStorage(key, defaultValue) {
+    return useStorage(key, defaultValue, window.localStorage)
+}
