@@ -47,7 +47,7 @@ export function registerCompletionProvider(context: vscode.ExtensionContext) {
   const showSnippetMessageCommand = vscode.commands.registerCommand(
     'extension.showSnippetMessage',
     (snippetName: string, snippet: Snippet) => {
-      vscode.window.showInformationMessage(`"${snippetName}" snippet: ${snippet.description}`);
+      vscode.window.showInformationMessage(`"${snippetName}" snippet: ${snippet.description} with dependencies ${snippet.dependentOnHook}`);
     }
   );
   context.subscriptions.push(showSnippetMessageCommand);
