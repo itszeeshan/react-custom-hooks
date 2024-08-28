@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { joinPath, loadSnippetsFromDir } from '../../../helper';
+import { joinPath, loadSnippets } from '../../../helper';
 
 const typescriptSnippetsDir = joinPath(__dirname, 'snippets/typescript');
 
@@ -32,7 +32,7 @@ const expectedUseFetchSnippet = {
 
 describe('TypeScript useFetch Snippet Tests', () => {
   it('should load the TypeScript useFetch snippet correctly', () => {
-    const snippets = loadSnippetsFromDir(typescriptSnippetsDir);
+    const snippets = loadSnippets(typescriptSnippetsDir);
 
     assert.deepStrictEqual(snippets['useFetch'], expectedUseFetchSnippet, 'TypeScript useFetch snippet did not load correctly');
   });

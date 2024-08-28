@@ -1,13 +1,13 @@
 import * as vscode from 'vscode';
-import { joinPath, loadSnippetsFromDir } from './helper';
+import { joinPath, loadSnippets } from './helper';
 import { Snippets } from './interface';
 
 const javascriptTemplatesDir = joinPath(__dirname, '../snippets/javascript');
 const typescriptTemplatesDir = joinPath(__dirname, '../snippets/typescript');
 
 export function registerCompletionProvider(context: vscode.ExtensionContext) {
-  const javascriptSnippets = loadSnippetsFromDir(javascriptTemplatesDir);
-  const typescriptSnippets = loadSnippetsFromDir(typescriptTemplatesDir);
+  const javascriptSnippets = loadSnippets(javascriptTemplatesDir);
+  const typescriptSnippets = loadSnippets(typescriptTemplatesDir);
 
   const registerProvider = (language: string, snippets: Snippets) => {
     const provider = vscode.languages.registerCompletionItemProvider(

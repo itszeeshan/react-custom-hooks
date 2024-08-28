@@ -9,7 +9,7 @@ interface Snippet {
   
 type Snippets = Record<string, Snippet>;
 
-export const loadSnippetsFromDir = (dirPath: string): Snippets => {
+export const loadSnippets = (dirPath: string): Snippets => {
     const snippets: Snippets = {};
   
     fs.readdirSync(dirPath).forEach(file => {
