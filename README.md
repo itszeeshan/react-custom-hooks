@@ -18,37 +18,37 @@ Enhance your development workflow with this VS Code extension that offers a coll
 
 Here are some of the snippets you can use:
 
-- **useFetch**: A hook to fetch data from a URL.
-- **useAsync**: A hook to handle asynchronous tasks.
-- **useArray**: A hook for managing and manipulating an array with functions like push, filter, update, remove, and clear.
-- **useAsync**: A hook to handle asynchronous tasks with loading, error, and value states.
-- **useClickOutside**: A hook to detect clicks outside a specified element and trigger a callback.
-- **useCookie**: A hook for managing cookies with get, set, and delete functionality.
-- **useCopyToClipboard**: A hook to copy text to the clipboard and track success.
-- **useDebounce**: A hook to debounce a callback function with a specified delay.
-- **useDeepCompareEffect**: A hook for running an effect with dependencies that are deeply compared.
-- **useEffectOnce**: A hook to run an effect only once on mount.
-- **useFetch**: A hook to fetch data from a URL with optional request options and dependencies.
-- **useGeolocation**: A hook to get and watch the user's geolocation.
-- **useHover**: A hook to track whether an element is being hovered over.
-- **useMediaQuery**: A hook to detect whether a media query matches.
-- **useOnlineStatus**: A hook to detect the online/offline status of the browser.
-- **useOnScreen**: A hook to detect if an element is visible within the viewport.
-- **usePrevious**: A hook to keep track of the previous value of a state or prop.
-- **useRenderCount**: A hook to count the number of times a component has rendered.
-- **useScript**: A hook to dynamically load a script and handle its loading state.
-- **useStorage**: A generic hook for managing state with a storage mechanism (e.g., localStorage, sessionStorage).
-- **useSessionStorage**: A hook for managing state with sessionStorage.
-- **useLocalStorage**: A hook for managing state with localStorage.
-- **useDarkMode**: A hook to manage dark mode state and apply dark mode styling based on user preference and localStorage.
-- **useTimeout**: A hook to manage a timeout with set, clear, and reset functionalities.
-- **useToggle**: A hook to toggle a boolean value.
-- **useUpdateEffect**: A hook to run an effect only on updates, not on the initial mount.
-- **useWindowSize**: A hook to track the window size and update on resize events.
-- **useStateWithHistory**: A hook to manage state with an undo/redo history mechanism.
-- **useStateWithValidation**: A hook to manage state with validation, providing validity status.
-- **useLongPress**: A hook to detect long press interactions on an element.
-- **useDebugInformation**: A hook to provide debugging information, including render count and changed props.
+| Hook                    | Description                                                                                  |
+|-------------------------|----------------------------------------------------------------------------------------------|
+| **useFetch**            | A hook to fetch data from a URL.                                                             |
+| **useAsync**            | A hook to handle asynchronous tasks.                                                         |
+| **useArray**            | A hook for managing and manipulating an array with functions like push, filter, update, remove, and clear. |
+| **useClickOutside**     | A hook to detect clicks outside a specified element and trigger a callback.                   |
+| **useCookie**           | A hook for managing cookies with get, set, and delete functionality.                         |
+| **useCopyToClipboard**  | A hook to copy text to the clipboard and track success.                                        |
+| **useDebounce**         | A hook to debounce a callback function with a specified delay.                                |
+| **useDeepCompareEffect**| A hook for running an effect with dependencies that are deeply compared.                      |
+| **useEffectOnce**       | A hook to run an effect only once on mount.                                                   |
+| **useGeolocation**      | A hook to get and watch the user's geolocation.                                               |
+| **useHover**            | A hook to track whether an element is being hovered over.                                     |
+| **useMediaQuery**       | A hook to detect whether a media query matches.                                                |
+| **useOnlineStatus**     | A hook to detect the online/offline status of the browser.                                    |
+| **useOnScreen**         | A hook to detect if an element is visible within the viewport.                                |
+| **usePrevious**         | A hook to keep track of the previous value of a state or prop.                                |
+| **useRenderCount**      | A hook to count the number of times a component has rendered.                                 |
+| **useScript**           | A hook to dynamically load a script and handle its loading state.                             |
+| **useStorage**          | A generic hook for managing state with a storage mechanism (e.g., localStorage, sessionStorage). |
+| **useSessionStorage**   | A hook for managing state with sessionStorage.                                                |
+| **useLocalStorage**     | A hook for managing state with localStorage.                                                  |
+| **useDarkMode**         | A hook to manage dark mode state and apply dark mode styling based on user preference and localStorage. |
+| **useTimeout**          | A hook to manage a timeout with set, clear, and reset functionalities.                         |
+| **useToggle**           | A hook to toggle a boolean value.                                                             |
+| **useUpdateEffect**     | A hook to run an effect only on updates, not on the initial mount.                            |
+| **useWindowSize**       | A hook to track the window size and update on resize events.                                  |
+| **useStateWithHistory** | A hook to manage state with an undo/redo history mechanism.                                   |
+| **useStateWithValidation** | A hook to manage state with validation, providing validity status.                          |
+| **useLongPress**        | A hook to detect long press interactions on an element.                                       |
+| **useDebugInformation** | A hook to provide debugging information, including render count and changed props.           |
 
 
 ### Hook Documentation
