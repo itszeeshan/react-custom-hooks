@@ -19,23 +19,27 @@ export function registerCompletionProvider(context: vscode.ExtensionContext) {
           for (const [key, value] of Object.entries(snippets)) {
             const completionItem = new vscode.CompletionItem(
               key,
-              vscode.CompletionItemKind.Snippet
+              vscode.CompletionItemKind.Snippet,
             );
-            completionItem.insertText = new vscode.SnippetString(value.body.join('\n'));
-            completionItem.documentation = new vscode.MarkdownString(value.description);
+            completionItem.insertText = new vscode.SnippetString(
+              value.body.join('\n'),
+            );
+            completionItem.documentation = new vscode.MarkdownString(
+              value.description,
+            );
             completionItem.detail = `Snippet: ${value.prefix}`;
             completionItem.command = {
               command: 'extension.showSnippetMessage',
               title: 'Show Snippet Message',
-              arguments: [key, value]
+              arguments: [key, value],
             };
             completionItems.push(completionItem);
           }
 
           return completionItems;
-        }
+        },
       },
-      'use'
+      'use',
     );
 
     context.subscriptions.push(provider);
@@ -48,14 +52,14 @@ export function registerCompletionProvider(context: vscode.ExtensionContext) {
     'extension.showSnippetMessage',
     (snippetName: string, snippet: Snippet) => {
       let message = `"${snippetName}" snippet:`;
-      if(snippet.relatedCustomHooks.length > 0){
+      if (snippet.relatedCustomHooks.length > 0) {
         message += ` The custom hooks ${snippet.relatedCustomHooks} are available in our library. Just type ${snippet.relatedCustomHooks} to use them, and make sure to include them to avoid any errors.`;
       }
-      if(snippet.relatedReactHooks.length > 0) {
+      if (snippet.relatedReactHooks.length > 0) {
         message += ` You can add ${snippet.relatedReactHooks} from react`;
       }
       vscode.window.showInformationMessage(message);
-    }
+    },
   );
   context.subscriptions.push(showSnippetMessageCommand);
 }

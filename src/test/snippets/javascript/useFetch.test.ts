@@ -25,15 +25,19 @@ const expectedUseFetchSnippet = {
     '  }, [url]);',
     '',
     '  return [data, loading, error];',
-    '};'
+    '};',
   ],
-  description: 'A custom hook for fetching data from a URL in JavaScript.'
+  description: 'A custom hook for fetching data from a URL in JavaScript.',
 };
 
 describe('JavaScript useFetch Snippet Tests', () => {
   it('should load the JavaScript useFetch snippet correctly', () => {
     const snippets = loadSnippets(javascriptSnippetsDir);
 
-    assert.deepStrictEqual(snippets['useFetch'], expectedUseFetchSnippet, 'JavaScript useFetch snippet did not load correctly');
+    assert.deepStrictEqual(
+      snippets['useFetch'],
+      expectedUseFetchSnippet,
+      'JavaScript useFetch snippet did not load correctly',
+    );
   });
 });
