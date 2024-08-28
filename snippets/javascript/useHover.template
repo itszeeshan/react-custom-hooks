@@ -1,4 +1,4 @@
-export default function useHover(ref) {
+function useHover(ref) {
     const [hovered, setHovered] = useState(false)
 
     useEventListener("mouseover", () => setHovered(true), ref.current)

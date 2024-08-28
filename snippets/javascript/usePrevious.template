@@ -1,4 +1,4 @@
-export default function usePrevious(value) {
+function usePrevious(value) {
     const currentRef = useRef(value)
     const previousRef = useRef()
 

@@ -1,6 +1,6 @@
 import isEqual from "lodash/fp/isEqual"
 
-export default function useDeepCompareEffect(callback, dependencies) {
+function useDeepCompareEffect(callback, dependencies) {
     const currentDependenciesRef = useRef()
 
     if (!isEqual(currentDependenciesRef.current, dependencies)) {

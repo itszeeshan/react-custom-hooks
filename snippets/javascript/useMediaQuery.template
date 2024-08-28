@@ -1,4 +1,4 @@
-export default function useMediaQuery(mediaQuery) {
+function useMediaQuery(mediaQuery) {
     const [isMatch, setIsMatch] = useState(false)
     const [mediaQueryList, setMediaQueryList] = useState(null)
 

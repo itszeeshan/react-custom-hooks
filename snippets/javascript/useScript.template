@@ -1,4 +1,4 @@
-export default function useScript(url) {
+function useScript(url) {
     return useAsync(() => {
         const script = document.createElement("script")
         script.src = url

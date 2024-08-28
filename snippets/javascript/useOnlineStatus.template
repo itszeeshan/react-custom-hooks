@@ -1,4 +1,4 @@
-export default function useOnlineStatus() {
+function useOnlineStatus() {
     const [online, setOnline] = useState(navigator.onLine)
 
     useEventListener("online", () => setOnline(navigator.onLine))

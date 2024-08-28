@@ -1,4 +1,4 @@
-export default function useEventListener(
+function useEventListener(
     eventType,
     callback,
     element = window

@@ -1,4 +1,4 @@
-export default function useDebugInformation(componentName, props) {
+function useDebugInformation(componentName, props) {
     const count = useRenderCount()
     const changedProps = useRef({})
     const previousProps = useRef(props)

@@ -1,4 +1,4 @@
-export default function useStateWithValidation(validationFunc, initialValue) {
+function useStateWithValidation(validationFunc, initialValue) {
     const [state, setState] = useState(initialValue)
     const [isValid, setIsValid] = useState(() => validationFunc(state))
 

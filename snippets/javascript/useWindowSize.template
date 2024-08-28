@@ -1,4 +1,4 @@
-export default function useWindowSize() {
+function useWindowSize() {
     const [windowSize, setWindowSize] = useState({
         width: window.innerWidth,
         height: window.innerHeight,

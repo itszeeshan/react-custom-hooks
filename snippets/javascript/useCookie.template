@@ -1,4 +1,4 @@
-export default function useCookie(name, defaultValue) {
+function useCookie(name, defaultValue) {
     const [value, setValue] = useState(() => {
         const cookie = Cookies.get(name)
         if (cookie) return cookie

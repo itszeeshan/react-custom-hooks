@@ -1,4 +1,4 @@
-export default function useUpdateEffect(callback, dependencies) {
+function useUpdateEffect(callback, dependencies) {
     const firstRenderRef = useRef(true)
 
     useEffect(() => {

@@ -7,7 +7,7 @@ function setWithHistory(value, history, i, capacity) {
     return history.length - 1 // return the new index
 }
 
-export default function useStateWithHistory(defaultValue, { capacity = 10 } = {}) {
+function useStateWithHistory(defaultValue, { capacity = 10 } = {}) {
     const [value, setValue] = useState(defaultValue)
     const historyRef = useRef([value])
     const pointerRef = useRef(0)

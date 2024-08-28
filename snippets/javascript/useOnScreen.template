@@ -1,4 +1,4 @@
-export default function useOnScreen(ref, rootMargin = "0px") {
+function useOnScreen(ref, rootMargin = "0px") {
     const [isVisible, setIsVisible] = useState(false)
 
     useEffect(() => {

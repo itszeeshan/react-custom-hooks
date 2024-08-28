@@ -1,4 +1,4 @@
-export default function useToggle(defaultValue) {
+function useToggle(defaultValue) {
     const [value, setValue] = useState(defaultValue)
 
     function toggleValue(value) {
