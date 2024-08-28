@@ -6,7 +6,7 @@
   "engines": {
     "vscode": "^1.92.0"
   },
-  "publisher": "zeesec/zeesek/zeeshan",
+  "publisher": "zeesec",
   "license": "MIT",
   "author": {
     "email": "iamzeeshan1233@gmail.com",
