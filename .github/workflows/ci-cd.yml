@@ -1,0 +1,41 @@
+name: CI/CD pipeline for react custom hooks vscode extension
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci --cache ../.npm --prefer-offline
+
+      - name: Compile TypeScript
+        run: npm run compile
+
+    #   - name: Run tests
+    #     run: npm test
+
+      # - name: Package extension
+      #   run: |
+      #     npm install -g vsce
+      #     vsce package
+
+      # - name: Publish extension
+      #   if: github.ref == 'refs/heads/main'
+      #   run: |
+      #     vsce publish
