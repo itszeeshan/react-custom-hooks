@@ -6,6 +6,22 @@
   "engines": {
     "vscode": "^1.92.0"
   },
+  "publisher": "zeesec/zeesek/zeeshan",
+  "license": "MIT",
+  "author": {
+    "email": "iamzeeshan1233@gmail.com",
+    "name": "Muhammad Zeeshan",
+    "url": "https://linkedin.com/in/zeesec"
+  },
+  "maintainers": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itszeeshan/react-custom-hooks"
+  },
+  "bugs": {
+    "url": "https://github.com/itszeeshan/react-custom-hooks/issues",
+    "email": "iamzeeshan1233@gmail.com"
+  },
   "categories": [
     "Other"
   ],
