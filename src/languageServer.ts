@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { joinPath, loadSnippets } from './helper';
-import { Snippets } from './interface';
+import { Snippet, Snippets } from './interface';
 
 const javascriptTemplatesDir = joinPath(__dirname, '../snippets/javascript');
 const typescriptTemplatesDir = joinPath(__dirname, '../snippets/typescript');
@@ -24,6 +24,11 @@ export function registerCompletionProvider(context: vscode.ExtensionContext) {
             completionItem.insertText = new vscode.SnippetString(value.body.join('\n'));
             completionItem.documentation = new vscode.MarkdownString(value.description);
             completionItem.detail = `Snippet: ${value.prefix}`;
+            completionItem.command = {
+              command: 'extension.showSnippetMessage',
+              title: 'Show Snippet Message',
+              arguments: [key, value]
+            };
             completionItems.push(completionItem);
           }
 
@@ -38,4 +43,12 @@ export function registerCompletionProvider(context: vscode.ExtensionContext) {
 
   registerProvider('javascript', javascriptSnippets);
   registerProvider('typescript', typescriptSnippets);
+
+  const showSnippetMessageCommand = vscode.commands.registerCommand(
+    'extension.showSnippetMessage',
+    (snippetName: string, snippet: Snippet) => {
+      vscode.window.showInformationMessage(`"${snippetName}" snippet: ${snippet.description}`);
+    }
+  );
+  context.subscriptions.push(showSnippetMessageCommand);
 }
