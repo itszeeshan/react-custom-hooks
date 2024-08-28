@@ -1,8 +1,8 @@
 {
   "name": "react-custom-hooks",
   "displayName": "React Custom Hooks",
-  "description": "insert custom react hooks boilerplate with autocomplete support",
-  "version": "0.0.1",
+  "description": "Insert custom react hooks to your project with autocomplete support",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.92.0"
   },
@@ -13,6 +13,22 @@
     "name": "Muhammad Zeeshan",
     "url": "https://linkedin.com/in/zeesec"
   },
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#e3f4ff",
+    "theme": "light"
+  },
+  "keywords": [
+    "reactcustomhooks",
+    "rch",
+    "react",
+    "customhooks",
+    "hooks",
+    "vscodereact",
+    "vscodereacthooks",
+    "reacthooks",
+    "vscodehooks"
+  ],
   "maintainers": [],
   "repository": {
     "type": "git",
@@ -23,6 +39,8 @@
     "email": "iamzeeshan1233@gmail.com"
   },
   "categories": [
+    "Programming Languages",
+    "Language Packs",
     "Other"
   ],
   "activationEvents": [
@@ -38,19 +56,31 @@
       }
     ],
     "languages": [
-    {
-      "id": "javascript",
-      "aliases": ["JavaScript", "javascript"],
-      "extensions": [".js", ".jsx"],
-      "configuration": "./language-configuration.json"
-    },
-    {
-      "id": "typescript",
-      "aliases": ["TypeScript", "typescript"],
-      "extensions": [".ts", ".tsx"],
-      "configuration": "./language-configuration.json"
-    }
-  ]
+      {
+        "id": "javascript",
+        "aliases": [
+          "JavaScript",
+          "javascript"
+        ],
+        "extensions": [
+          ".js",
+          ".jsx"
+        ],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "typescript",
+        "aliases": [
+          "TypeScript",
+          "typescript"
+        ],
+        "extensions": [
+          ".ts",
+          ".tsx"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
@@ -64,14 +94,15 @@
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "check-types": "tsc --noEmit",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "build": "vsce package"
   },
   "devDependencies": {
     "@types/vscode": "^1.92.0",
     "@types/mocha": "^10.0.7",
     "@types/node": "20.x",
     "@typescript-eslint/eslint-plugin": "^7.14.1",
-    "@typescript-eslint/parser": "^7.11.0",
+    "@typescript-eslint/parser": "^7.11.0",    
     "eslint": "^8.57.0",
     "esbuild": "^0.21.5",
     "npm-run-all": "^4.1.5",
