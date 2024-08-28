@@ -1,0 +1,8 @@
+type UseClickOutsideCallback = (event: MouseEvent) => void;
+
+function useClickOutside(ref: React.RefObject<HTMLElement>, cb: UseClickOutsideCallback): void {
+    useEventListener("click", (e: MouseEvent) => {
+        if (ref.current == null || ref.current.contains(e.target as Node)) return;
+        cb(e);
+    }, document);
+}

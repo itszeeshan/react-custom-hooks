@@ -1,0 +1,45 @@
+interface PropChange<T> {
+    previous: T;
+    current: T;
+}
+
+interface DebugInfo<T> {
+    count: number;
+    changedProps: Record<string, PropChange<T>>;
+    timeSinceLastRender: number;
+    lastRenderTimestamp: number;
+}
+
+function useDebugInformation<T>(
+    componentName: string,
+    props: Record<string, T>
+): DebugInfo<T> {
+    const count = useRenderCount();
+    const changedProps = useRef<Record<string, PropChange<T>>>({});
+    const previousProps = useRef<Record<string, T>>(props);
+    const lastRenderTimestamp = useRef<number>(Date.now());
+
+    const propKeys = Object.keys({ ...props, ...previousProps.current });
+    changedProps.current = propKeys.reduce((obj, key) => {
+        if (props[key] === previousProps.current[key]) return obj;
+        return {
+            ...obj,
+            [key]: { previous: previousProps.current[key], current: props[key] },
+        };
+    }, {} as Record<string, PropChange<T>>);
+
+    const info: DebugInfo<T> = {
+        count,
+        changedProps: changedProps.current,
+        timeSinceLastRender: Date.now() - lastRenderTimestamp.current,
+        lastRenderTimestamp: lastRenderTimestamp.current,
+    };
+
+    useEffect(() => {
+        previousProps.current = props;
+        lastRenderTimestamp.current = Date.now();
+        console.log("[debug-info]", componentName, info);
+    });
+
+    return info;
+}

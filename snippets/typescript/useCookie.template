@@ -1,0 +1,30 @@
+import Cookies from 'js-cookie';
+
+type UseCookieOptions = Cookies.CookieAttributes;
+
+function useCookie(
+    name: string,
+    defaultValue: string
+): [string, (newValue: string, options?: UseCookieOptions) => void, () => void] {
+    const [value, setValue] = useState<string>(() => {
+        const cookie = Cookies.get(name);
+        if (cookie) return cookie;
+        Cookies.set(name, defaultValue);
+        return defaultValue;
+    });
+
+    const updateCookie = useCallback(
+        (newValue: string, options?: UseCookieOptions) => {
+            Cookies.set(name, newValue, options);
+            setValue(newValue);
+        },
+        [name]
+    );
+
+    const deleteCookie = useCallback(() => {
+        Cookies.remove(name);
+        setValue('');
+    }, [name]);
+
+    return [value, updateCookie, deleteCookie];
+}

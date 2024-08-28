@@ -1,0 +1,14 @@
+function useUpdateEffect(
+    callback: () => void | (() => void),
+    dependencies: React.DependencyList
+): void {
+    const firstRenderRef = useRef(true);
+
+    useEffect(() => {
+        if (firstRenderRef.current) {
+            firstRenderRef.current = false;
+            return;
+        }
+        return callback();
+    }, dependencies);
+}

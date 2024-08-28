@@ -1,0 +1,19 @@
+import isEqual from 'lodash/fp/isEqual';
+
+type UseDeepCompareEffect = (
+    callback: () => void,
+    dependencies: any[]
+) => void;
+
+function useDeepCompareEffect(
+    callback: () => void,
+    dependencies: any[]
+): void {
+    const currentDependenciesRef = useRef<any[]>([]);
+
+    if (!isEqual(currentDependenciesRef.current, dependencies)) {
+        currentDependenciesRef.current = dependencies;
+    }
+
+    useEffect(callback, [currentDependenciesRef.current]);
+}

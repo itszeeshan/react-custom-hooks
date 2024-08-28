@@ -1,0 +1,6 @@
+function useLocalStorage<T>(
+    key: string,
+    defaultValue: T | (() => T)
+): [T | undefined, (value: T | undefined) => void, () => void] {
+    return useStorage(key, defaultValue, window.localStorage);
+}

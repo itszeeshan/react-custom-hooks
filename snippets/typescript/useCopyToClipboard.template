@@ -1,0 +1,19 @@
+import copy from 'copy-to-clipboard';
+
+type UseCopyToClipboardResult = [(
+    text: string,
+    options?: copy.CopyOptions
+) => void, { value: string | undefined; success: boolean }];
+
+function useCopyToClipboard(): UseCopyToClipboardResult {
+    const [value, setValue] = useState<string | undefined>(undefined);
+    const [success, setSuccess] = useState<boolean>(false);
+
+    const copyToClipboard = (text: string, options?: copy.CopyOptions) => {
+        const result = copy(text, options);
+        if (result) setValue(text);
+        setSuccess(result);
+    };
+
+    return [copyToClipboard, { value, success }];
+}

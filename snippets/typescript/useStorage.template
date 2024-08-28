@@ -1,0 +1,33 @@
+type StorageObject = {
+    getItem: (key: string) => string | null;
+    setItem: (key: string, value: string) => void;
+    removeItem: (key: string) => void;
+};
+
+function useStorage<T>(
+    key: string,
+    defaultValue: T | (() => T),
+    storageObject: StorageObject
+): [T | undefined, (value: T | undefined) => void, () => void] {
+    const [value, setValue] = useState<T | undefined>(() => {
+        const jsonValue = storageObject.getItem(key);
+        if (jsonValue != null) return JSON.parse(jsonValue) as T;
+
+        if (typeof defaultValue === "function") {
+            return (defaultValue as () => T)();
+        } else {
+            return defaultValue;
+        }
+    });
+
+    useEffect(() => {
+        if (value === undefined) return storageObject.removeItem(key);
+        storageObject.setItem(key, JSON.stringify(value));
+    }, [key, value, storageObject]);
+
+    const remove = useCallback(() => {
+        setValue(undefined);
+    }, []);
+
+    return [value, setValue, remove];
+}

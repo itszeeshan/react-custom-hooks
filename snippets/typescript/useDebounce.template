@@ -1,0 +1,12 @@
+function useDebounce(
+    callback: () => void,
+    delay: number,
+    dependencies: React.DependencyList
+): void {
+    const { reset, clear } = useTimeout(callback, delay);
+
+    useEffect(() => {
+        reset();
+        return clear;
+    }, [...dependencies, reset, clear]);
+}

@@ -1,0 +1,11 @@
+function useDarkMode(): [boolean, (value: boolean | undefined) => void] {
+    const [darkMode, setDarkMode] = useLocalStorage<boolean | undefined>("useDarkMode");
+    const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+    const enabled = darkMode ?? prefersDarkMode;
+
+    useEffect(() => {
+        document.body.classList.toggle("dark-mode", enabled);
+    }, [enabled]);
+
+    return [enabled, setDarkMode];
+}

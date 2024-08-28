@@ -1,0 +1,55 @@
+function setWithHistory<T>(value: T, history: T[], i: number, capacity: number): number {
+    if (i < 0 || i > history.length - 1) return i; // ignore if out of bounds
+    if (history[i] === value) return i; // no change if value is the same
+    if (i < history.length - 1) history.splice(i + 1); // erase the future if changing the past
+    history.push(value); // add the new value to the history
+    while (history.length > capacity) history.shift(); // cap the history at the capacity
+    return history.length - 1; // return the new index
+}
+
+interface HistoryState<T> {
+    history: T[];
+    pointer: number;
+    back: () => void;
+    forward: () => void;
+    go: (index: number) => void;
+}
+
+function useStateWithHistory<T>(
+    defaultValue: T,
+    { capacity = 10 }: { capacity?: number } = {}
+): [T, (value: T | ((prevValue: T) => T)) => void, HistoryState<T>] {
+    const [value, setValue] = useState<T>(defaultValue);
+    const historyRef = useRef<T[]>([value]);
+    const pointerRef = useRef<number>(0);
+
+    const set = useCallback(
+        (v: T | ((prevValue: T) => T)) => {
+            const resolvedValue = typeof v === 'function' ? (v as (prevValue: T) => T)(value) : v;
+            pointerRef.current = setWithHistory(resolvedValue, historyRef.current, pointerRef.current, capacity);
+            setValue(resolvedValue);
+        },
+        [capacity, value]
+    );
+
+    const go = useCallback((index: number) => {
+        if (index < 0 || index > historyRef.current.length - 1) return;
+        pointerRef.current = index;
+        setValue(historyRef.current[pointerRef.current]);
+    }, []);
+
+    const forward = useCallback(() => go(pointerRef.current + 1), [go]);
+    const back = useCallback(() => go(pointerRef.current - 1), [go]);
+
+    return [
+        value,
+        set,
+        {
+            history: historyRef.current,
+            pointer: pointerRef.current,
+            back,
+            forward,
+            go
+        }
+    ];
+}

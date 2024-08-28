@@ -1,0 +1,7 @@
+import { useEffect } from 'react';
+
+type UseEffectOnce = (cb: () => void) => void;
+
+function useEffectOnce(cb: () => void): void {
+    useEffect(cb, []);
+}

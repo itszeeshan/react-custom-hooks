@@ -1,0 +1,8 @@
+function useHover(ref: React.RefObject<HTMLElement>): boolean {
+    const [hovered, setHovered] = useState<boolean>(false);
+
+    useEventListener("mouseover", () => setHovered(true), ref.current);
+    useEventListener("mouseout", () => setHovered(false), ref.current);
+
+    return hovered;
+}
