@@ -51,7 +51,7 @@ export function registerCompletionProvider(context: vscode.ExtensionContext) {
       if(snippet.relatedCustomHooks.length > 0){
         message += ` The custom hooks ${snippet.relatedCustomHooks} are available in our library. Just type ${snippet.relatedCustomHooks} to use them, and make sure to include them to avoid any errors.`;
       }
-      if(snippet.relatedReactHooks) {
+      if(snippet.relatedReactHooks.length > 0) {
         message += ` You can add ${snippet.relatedReactHooks} from react`;
       }
       vscode.window.showInformationMessage(message);
