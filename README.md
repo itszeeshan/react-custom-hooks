@@ -30,9 +30,9 @@ For detailed information about each hook, check out the following links:
 
 ## Contributing
 
-Want to help out? Here’s how:
+Contributions are welcome! Please open an issue or submit a pull request if you have suggestions or improvements.
 
-1. Fork the repo.
+1. Fork the repository.
 2. Create a new branch for your changes.
 3. Make your changes and test them.
 4. Submit a pull request.
