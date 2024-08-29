@@ -30,21 +30,23 @@ jobs:
     - name: Increment version
       id: version
       run: |
-        current_version=$(npm version patch)
+        current_version=$(npm version patch | sed 's/^v//')
         echo "new_version=$current_version" >> $GITHUB_ENV
 
     - name: Build the extension
       run: npm run compile
 
     - name: Package the extension
+      id: package
       run: |
         npm run build
         echo "Listing files in the directory to verify .vsix file is generated:"
         ls -lh
         ls -lh *.vsix || echo "No .vsix file found!"
+        if [ -f *.vsix ]; then echo "vsix_file_exists=true" >> $GITHUB_ENV; else echo "vsix_file_exists=false" >> $GITHUB_ENV; fi
 
     - name: Create GitHub Release
-      if: success() && steps.package.outputs.vsix_file_exists == 'true'
+      if: success() && env.vsix_file_exists == 'true'
       uses: softprops/action-gh-release@v1
       with:
         files: '*.vsix'
@@ -52,13 +54,14 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Publish to Visual Studio Marketplace
-      if: success() && steps.package.outputs.vsix_file_exists == 'true'
+      if: success() && env.vsix_file_exists == 'true'
       run: |
         vsce publish
       env:
         VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
     - name: Commit and push version update
+      if: success() && env.vsix_file_exists == 'true'
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -66,3 +69,5 @@ jobs:
         git commit -m "ci: bump version to ${{ env.new_version }}"
         git tag ${{ env.new_version }}
         git push origin main --tags
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
