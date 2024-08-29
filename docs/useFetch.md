@@ -1,6 +1,8 @@
-### `useFetch`
+# `useFetch`
 
-## Parameters
+A hook to fetch data from a URL.
+
+## Arguments
 
 - `url` (`string`): The URL to fetch data from.
 - `options` (`object`, optional): Additional options for the `fetch` request.

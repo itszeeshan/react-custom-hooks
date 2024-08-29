@@ -1,8 +1,8 @@
-### `useAsync`
+# `useAsync`
 
 A hook to handle asynchronous tasks.
 
-## Parameters
+## Arguments
 
 - `callback` (`function`): The asynchronous function to execute.
 - `dependencies` (`array`, optional): Dependency array to control when the async function should be executed.
