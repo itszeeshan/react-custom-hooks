@@ -11,7 +11,10 @@
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
 		"noUnusedParameters": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"outDir": "out",
 	},
 	"include": ["src/**/*.ts"],
-	"exclude": ["node_modules", "!node_modules/@types"]
+	"exclude": ["node_modules", ".vscode-test"]
 }
