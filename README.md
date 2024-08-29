@@ -55,8 +55,35 @@ Here are some of the snippets you can use:
 
 For detailed information about each hook, check out the following links:
 
-- [useFetch Documentation](https://github.com/itszeeshan/react-custom-hooks/docs/useFetch.md)
+- [useFetch Documentation](docs/useFetch.md)
 - [useAsync Documentation](docs/useAsync.md)
+- [useArray Documentation](docs/useArray.md)
+- [useClickOutside Documentation](docs/useClickOutside.md)
+- [useCookie Documentation](docs/useCookie.md)
+- [useCopyToClipboard Documentation](docs/useCopyToClipboard.md)
+- [useDebounce Documentation](docs/useDebounce.md)
+- [useDeepCompareEffect Documentation](docs/useDeepCompareEffect.md)
+- [useEffectOnce Documentation](docs/useEffectOnce.md)
+- [useGeolocation Documentation](docs/useGeolocation.md)
+- [useHover Documentation](docs/useHover.md)
+- [useMediaQuery Documentation](docs/useMediaQuery.md)
+- [useOnlineStatus Documentation](docs/useOnlineStatus.md)
+- [useOnScreen Documentation](docs/useOnScreen.md)
+- [usePrevious Documentation](docs/usePrevious.md)
+- [useRenderCount Documentation](docs/useRenderCount.md)
+- [useScript Documentation](docs/useScript.md)
+- [useStorage Documentation](docs/useStorage.md)
+- [useSessionStorage Documentation](docs/useSessionStorage.md)
+- [useLocalStorage Documentation](docs/useLocalStorage.md)
+- [useDarkMode Documentation](docs/useDarkMode.md)
+- [useTimeout Documentation](docs/useTimeout.md)
+- [useToggle Documentation](docs/useToggle.md)
+- [useUpdateEffect Documentation](docs/useUpdateEffect.md)
+- [useWindowSize Documentation](docs/useWindowSize.md)
+- [useStateWithHistory Documentation](docs/useStateWithHistory.md)
+- [useStateWithValidation Documentation](docs/useStateWithValidation.md)
+- [useLongPress Documentation](docs/useLongPress.md)
+- [useDebugInformation Documentation](docs/useDebugInformation.md)
 
 ## Contributing
 
