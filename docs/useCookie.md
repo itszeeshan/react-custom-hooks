@@ -18,6 +18,10 @@ A hook for managing cookies with get, set, and delete functionality.
 - [useState](https://react.dev/reference/react/useState)
 - [useCallback](https://react.dev/reference/react/useCallback)
 
+## Libraries Involves
+
+- Cookies from `js-cookie`
+
 ## How to Use
 
 ```js

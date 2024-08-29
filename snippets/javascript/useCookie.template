@@ -1,5 +1,3 @@
-import Cookies from 'js-cookie';
-
 function useCookie(name, defaultValue) {
     const [value, setValue] = useState(() => {
         const cookie = Cookies.get(name)

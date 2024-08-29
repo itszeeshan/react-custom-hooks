@@ -58,6 +58,8 @@ export function registerCompletionProvider(context: vscode.ExtensionContext) {
       if (snippet.relatedReactHooks.length > 0) {
         message += ` You can add ${snippet.relatedReactHooks} from react`;
       }
+
+      message += ` Read docs for better understanding`;
       vscode.window.showInformationMessage(message);
     },
   );

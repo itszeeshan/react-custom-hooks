@@ -1,5 +1,3 @@
-import copy from "copy-to-clipboard"
-
 function useCopyToClipboard() {
     const [value, setValue] = useState()
     const [success, setSuccess] = useState()

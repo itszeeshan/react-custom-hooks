@@ -14,6 +14,10 @@
 
 - [useState](https://react.dev/reference/react/useState)
 
+## Liraries Involved
+
+- copy from `copy-to-clipboard`
+
 ## How to Use
 
 ```js

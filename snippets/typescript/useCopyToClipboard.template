@@ -1,5 +1,3 @@
-import copy from 'copy-to-clipboard';
-
 type UseCopyToClipboardResult = [(
     text: string,
     options?: copy.CopyOptions
