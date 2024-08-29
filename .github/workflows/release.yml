@@ -39,9 +39,12 @@ jobs:
     - name: Package the extension
       run: |
         npm run package
-        ls -lh *.vsix
+        echo "Listing files in the directory to verify .vsix file is generated:"
+        ls -lh
+        ls -lh *.vsix || echo "No .vsix file found!"
 
     - name: Create GitHub Release
+      if: success() && steps.package.outputs.vsix_file_exists == 'true'
       uses: softprops/action-gh-release@v1
       with:
         files: '*.vsix'
@@ -49,6 +52,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Publish to Visual Studio Marketplace
+      if: success() && steps.package.outputs.vsix_file_exists == 'true'
       run: |
         vsce publish
       env:
