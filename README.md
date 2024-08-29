@@ -49,7 +49,7 @@ Here are some of the snippets you can use:
 | **useStateWithValidation** | A hook to manage state with validation, providing validity status.                          |
 | **useLongPress**        | A hook to detect long press interactions on an element.                                       |
 | **useDebugInformation** | A hook to provide debugging information, including render count and changed props.           |
-
+| **useEventListener**    | A hook to add an event listener to a specified element and clean up on unmount.             |
 
 ### Hook Documentation
 
@@ -84,6 +84,7 @@ For detailed information about each hook, check out the following links:
 - [useStateWithValidation Documentation](docs/useStateWithValidation.md)
 - [useLongPress Documentation](docs/useLongPress.md)
 - [useDebugInformation Documentation](docs/useDebugInformation.md)
+- [useEventListener Documentation](docs/useEventListener.md)
 
 ## Contributing
 
