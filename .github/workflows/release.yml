@@ -34,7 +34,7 @@ jobs:
         echo "new_version=$current_version" >> $GITHUB_ENV
 
     - name: Build the extension
-      run: npm run build
+      run: npm run compile
 
     - name: Package the extension
       run: |
