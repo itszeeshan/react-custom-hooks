@@ -52,6 +52,8 @@ jobs:
         git config user.email "github-actions[bot]@users.noreply.github.com"
         git tag ${{ env.new_version }}
         git push origin ${{ env.new_version }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Create GitHub Release
       if: success() && env.vsix_file_exists == 'true'
@@ -61,13 +63,6 @@ jobs:
         tag_name: ${{ env.new_version }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Publish to Visual Studio Marketplace
-      if: success() && env.vsix_file_exists == 'true'
-      run: |
-        vsce publish
-      env:
-        VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
     - name: Commit and push version update
       if: success() && env.vsix_file_exists == 'true'
