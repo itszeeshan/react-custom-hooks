@@ -22,8 +22,6 @@ jobs:
         run: npm ci --cache ../.npm --prefer-offline
 
       - name: Publish to VSCode Extension Marketplace
-        uses: lannonbr/vsce-action@3.0.0
-        with:
-          args: "publish -p $PUBLISHER_TOKEN"
+        run: npx vsce publish -p ${PUBLISHER_TOKEN}
         env:
           PUBLISHER_TOKEN: ${{ secrets.VSCE_PAT }}
