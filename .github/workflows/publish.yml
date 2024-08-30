@@ -26,6 +26,7 @@ jobs:
         run: npm run build
 
       - name: Publish to VSCode Extension Marketplace
-        run: npx vsce publish -p ${{ secrets.VSCE_PAT }}
+        run: |
+          echo "${{ secrets.VSCE_PAT }}" | npx vsce publish -p $(cat)
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
