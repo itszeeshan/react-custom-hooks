@@ -1,9 +1,9 @@
 name: Publish
 
 on:
-  release:
-    types:
-      - published
+    push:
+        branches:
+          - main
 
 jobs:
   publish:
@@ -19,7 +19,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci --cache ../.npm --prefer-offline
 
       - name: Publish to VSCode Extension Marketplace
         uses: lannonbr/vsce-action@3.0.0
