@@ -30,10 +30,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run release
-        
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: '*.vsix'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
