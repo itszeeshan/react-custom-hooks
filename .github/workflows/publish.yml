@@ -24,6 +24,6 @@ jobs:
       - name: Publish to VSCode Extension Marketplace
         uses: lannonbr/vsce-action@3.0.0
         with:
-          args: "publish -p $PUBLISHER_TOKEN"
+          args: "publish -p $VSCE_PAT"
         env:
-          PUBLISHER_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
+          PUBLISHER_TOKEN: ${{ secrets.VSCE_PAT }}

@@ -11,45 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v1
         with:
-          node-version: 18
+          node-version: 16
 
       - name: Install dependencies
         run: npm install
 
-      - name: Increment version and create release
-        id: version
-        run: |
-          current_version=$(npm version patch)
-          echo "new_version=$current_version" >> $GITHUB_ENV
-
-      - name: Build the extension
-        run: npm run compile
-
-      - name: Package the extension
-        run: |
-          npm run build
-          echo "Listing files in the directory to verify .vsix file is generated:"
-          ls -lh
-          ls -lh *.vsix || echo "No .vsix file found!"
-
-      - name: Create GitHub Release
-        if: success() && steps.package.outputs.vsix_file_exists == 'true'
-        uses: softprops/action-gh-release@v1
-        with:
-          files: '*.vsix'
+      - name: Run semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Commit and push version update
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add package.json
-          git commit -m "ci: bump version to ${{ env.new_version }}"
-          git tag ${{ env.new_version }}
-          git push origin main --tags
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+        run: npm run release
