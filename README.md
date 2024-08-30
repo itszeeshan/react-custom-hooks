@@ -1,4 +1,4 @@
-# React Custom Hooks Snippets Extension for VS Code (In Progress)
+# React Custom Hooks Snippets Extension for VS Code
 
 Enhance your development workflow with this VS Code extension that offers a collection of useful React Custom hooks as code. Whether you're using JavaScript or TypeScript, this extension dynamically loads and provides snippets from external files, to fit your project needs.
 
