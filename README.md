@@ -21,11 +21,6 @@ Enhance your development workflow with this VS Code extension that offers a coll
 2. Type the snippet prefix (e.g., `useFetch`).
 3. Select the snippet from the suggestion list to insert it into your code.
 
-<video width="600" controls>
-  <source src="./images/assets/manual.mov" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
 ![Manual](./images/assets/manual.gif)
 
 ### Javascript Support With Javascript code
