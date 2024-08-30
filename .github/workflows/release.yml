@@ -1,65 +1,55 @@
 name: Release
+
 on:
   push:
     branches:
       - main
+
 jobs:
   release:
+    name: GitHub Release
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-    - name: Install dependencies
-      run: npm install
-    - name: Commit any changes (if needed)
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git diff --quiet || (git add . && git commit -m "ci: auto-commit before version bump")
-    
-    - name: Increment version
-      id: version
-      run: |
-        current_version=$(npm version patch | sed 's/^v//')
-        echo "new_version=$current_version" >> $GITHUB_ENV
-    - name: Build the extension
-      run: npm run compile
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Package the extension
-      id: package
-      run: |
-        npm run build
-        echo "Listing files in the directory to verify .vsix file is generated:"
-        ls -lh
-        ls -lh *.vsix || echo "No .vsix file found!"
-        if [ -f *.vsix ]; then echo "vsix_file_exists=true" >> $GITHUB_ENV; else echo "vsix_file_exists=false" >> $GITHUB_ENV; fi
-    - name: Create GitHub Release
-      if: success() && env.vsix_file_exists == 'true'
-      uses: softprops/action-gh-release@v1
-      with:
-        files: '*.vsix'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - name: Publish to Visual Studio Marketplace
-      if: success() && env.vsix_file_exists == 'true'
-      run: |
-        vsce publish
-      env:
-        VSCE_PAT: ${{ secrets.VSCE_PAT }}
+      - name: Install dependencies
+        run: npm install
 
-    - name: Commit and push version update
-      if: success() && env.vsix_file_exists == 'true'
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add package.json
-        git commit -m "ci: bump version to ${{ env.new_version }}"
-        git tag ${{ env.new_version }}
-        git push origin main --tags
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Increment version and create release
+        id: version
+        run: |
+          current_version=$(npm version patch)
+          echo "new_version=$current_version" >> $GITHUB_ENV
+
+      - name: Build the extension
+        run: npm run compile
+
+      - name: Package the extension
+        run: |
+          npm run build
+          echo "Listing files in the directory to verify .vsix file is generated:"
+          ls -lh
+          ls -lh *.vsix || echo "No .vsix file found!"
+
+      - name: Create GitHub Release
+        if: success() && steps.package.outputs.vsix_file_exists == 'true'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: '*.vsix'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and push version update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json
+          git commit -m "ci: bump version to ${{ env.new_version }}"
+          git tag ${{ env.new_version }}
+          git push origin main --tags
