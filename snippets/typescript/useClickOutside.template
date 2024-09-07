@@ -1,8 +1,8 @@
-type UseClickOutsideCallback = (event: MouseEvent) => void;
+type UseClickOutsideCallback<T extends Event> = (event: T) => void;
 
-function useClickOutside(ref: React.RefObject<HTMLElement>, cb: UseClickOutsideCallback): void {
-    useEventListener("click", (e: MouseEvent) => {
+function useClickOutside<T extends Event>(ref: React.RefObject<HTMLElement>, cb: UseClickOutsideCallback<T>): void {
+    useEventListener<T>("click", (e: T) => {
         if (ref.current == null || ref.current.contains(e.target as Node)) return;
         cb(e);
-    }, document);
+    }, document as unknown as HTMLElement);
 }

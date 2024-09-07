@@ -1,4 +1,4 @@
-# React Custom Hooks Snippets Extension for VS Code (In Progress)
+# React Custom Hooks Snippets Extension for VS Code
 
 Enhance your development workflow with this VS Code extension that offers a collection of useful React Custom hooks as code. Whether you're using JavaScript or TypeScript, this extension dynamically loads and provides snippets from external files, to fit your project needs.
 
@@ -8,11 +8,28 @@ Enhance your development workflow with this VS Code extension that offers a coll
 - **Automatic Loading**: Loads snippets from files, including hooks that depend on others.
 - **File Type Detection**: Chooses the right snippet based on whether you're using JavaScript or TypeScript.
 
+## Supported File Ext
+
+- `.js`
+- `.ts`
+- `.jsx`
+- `.tsx`
+
 ## How to Use
 
 1. Open a JavaScript or TypeScript file in VS Code.
 2. Type the snippet prefix (e.g., `useFetch`).
 3. Select the snippet from the suggestion list to insert it into your code.
+
+![Manual](./images/assets/manual.gif)
+
+### Javascript Support With Javascript code
+
+![Javascript Support With Javascript code](./images/assets/javascript-support.png)
+
+### Typescript Support With Typescript code
+
+![Typescript Support With Typescript code](./images/assets/typescript-support.png)
 
 ## Available Snippets
 

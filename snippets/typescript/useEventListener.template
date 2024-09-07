@@ -1,11 +1,11 @@
-type EventHandler = (event: Event) => void;
+type EventHandler<T extends Event> = (event: T) => void;
 
-function useEventListener(
+function useEventListener<T extends Event>(
     eventType: string,
-    callback: EventHandler,
+    callback: EventHandler<T>,
     element: HTMLElement | Window = window
 ): void {
-    const callbackRef = useRef<EventHandler>(callback);
+    const callbackRef = useRef(callback);
 
     useEffect(() => {
         callbackRef.current = callback;
@@ -13,9 +13,9 @@ function useEventListener(
 
     useEffect(() => {
         if (element == null) return;
-        const handler = (e: Event) => callbackRef.current(e);
-        element.addEventListener(eventType, handler);
+        const handler = (e: T) => callbackRef.current(e);
+        element.addEventListener(eventType, handler as EventListener);
 
-        return () => element.removeEventListener(eventType, handler);
+        return () => element.removeEventListener(eventType, handler as EventListener);
     }, [eventType, element]);
 }
