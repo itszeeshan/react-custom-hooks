@@ -51,10 +51,6 @@
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "react-custom-hooks.helloWorld",
-        "title": "Hello World"
-      }
     ],
     "languages": [
       {
