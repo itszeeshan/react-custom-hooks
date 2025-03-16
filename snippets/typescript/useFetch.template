@@ -1,20 +1,43 @@
 type FetchOptions = RequestInit & {
-    headers?: HeadersInit;
+  headers?: HeadersInit;
 };
 
 const DEFAULT_OPTIONS: FetchOptions = {
-    headers: { "Content-Type": "application/json" },
+  headers: { "Content-Type": "application/json" },
 };
 
-function useFetch<T>(
-    url: string,
-    options: FetchOptions = {},
-    dependencies: any[] = []
+export function useFetch<T>(
+  url: string,
+  options: FetchOptions = {},
+  dependencies: unknown[] = []
 ) {
-    return useAsync<T>(() => {
-        return fetch(url, { ...DEFAULT_OPTIONS, ...options }).then(res => {
-            if (res.ok) return res.json();
-            return res.json().then(json => Promise.reject(json));
-        });
-    }, dependencies);
+  return useAsync<T>(async () => {
+    const mergedHeaders = new Headers(DEFAULT_OPTIONS.headers);
+    new Headers(options.headers).forEach((value, key) => {
+      mergedHeaders.set(key, value);
+    });
+
+    const mergedOptions: RequestInit = {
+      ...DEFAULT_OPTIONS,
+      ...options,
+      headers: mergedHeaders,
+    };
+
+    const response = await fetch(url, mergedOptions);
+    
+    if (!response.ok) {
+      try {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.message || response.statusText || "Request failed"
+        );
+      } catch (error) {
+        throw new Error(
+          error instanceof Error ? error.message : "Failed to parse error"
+        );
+      }
+    }
+
+    return response.json() as Promise<T>;
+  }, dependencies);
 }

@@ -1,12 +1,35 @@
 const DEFAULT_OPTIONS = {
-    headers: { "Content-Type": "application/json" },
-}
+  headers: { "Content-Type": "application/json" },
+};
 
-function useFetch(url, options = {}, dependencies = []) {
-    return useAsync(() => {
-        return fetch(url, { ...DEFAULT_OPTIONS, ...options }).then(res => {
-            if (res.ok) return res.json()
-            return res.json().then(json => Promise.reject(json))
-        })
-    }, dependencies)
+export function useFetch(url, options = {}, dependencies = []) {
+  return useAsync(async () => {
+    const mergedHeaders = new Headers(DEFAULT_OPTIONS.headers);
+    new Headers(options.headers).forEach((value, key) => {
+      mergedHeaders.set(key, value);
+    });
+
+    const mergedOptions = {
+      ...DEFAULT_OPTIONS,
+      ...options,
+      headers: mergedHeaders,
+    };
+
+    const response = await fetch(url, mergedOptions);
+
+    if (!response.ok) {
+      try {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.message || response.statusText || "Request failed"
+        );
+      } catch (error) {
+        throw new Error(
+          error instanceof Error ? error.message : "Failed to parse error"
+        );
+      }
+    }
+
+    return response.json();
+  }, dependencies);
 }
