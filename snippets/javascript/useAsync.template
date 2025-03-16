@@ -1,21 +1,44 @@
-function useAsync(callback, dependencies = []) {
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState()
-    const [value, setValue] = useState()
-
-    const callbackMemoized = useCallback(() => {
-        setLoading(true)
-        setError(undefined)
-        setValue(undefined)
-        callback()
-            .then(setValue)
-            .catch(setError)
-            .finally(() => setLoading(false))
-    }, dependencies)
+export function useAsync(callback, dependencies = []) {
+    const [state, setState] = useState({
+        loading: true,
+        error: undefined,
+        value: undefined,
+    });
 
     useEffect(() => {
-        callbackMemoized()
-    }, [callbackMemoized])
+        let isMounted = true;
 
-    return { loading, error, value }
+        // Reset state for new request
+        setState({
+            loading: true,
+            error: undefined,
+            value: undefined,
+        });
+
+        callback()
+            .then((value) => {
+                if (isMounted) {
+                    setState({
+                        loading: false,
+                        error: undefined,
+                        value,
+                    });
+                }
+            })
+            .catch((error) => {
+                if (isMounted) {
+                    setState({
+                        loading: false,
+                        error: error instanceof Error ? error : new Error(String(error)),
+                        value: undefined,
+                    });
+                }
+            });
+
+        return () => {
+            isMounted = false;
+        };
+    }, dependencies); // eslint-disable-line react-hooks/exhaustive-deps
+
+    return state;
 }
