@@ -12,6 +12,7 @@ A hook to handle asynchronous tasks.
 - An object containing `data`, `error`, and `loading`.
 
 ## Hooks Involved
+
 - [useState](https://react.dev/reference/react/useState)
 - [useCallback](https://react.dev/reference/react/useCallback)
 - [useEffect](https://react.dev/reference/react/useEffect)
@@ -19,24 +20,25 @@ A hook to handle asynchronous tasks.
 ## How to Use
 
 ```js
-import useAsync from "./useAsync"
+import useAsync from './useAsync';
 
 export default function AsyncComponent() {
-    const { loading, error, value } = useAsync(() => {
-        return new Promise((resolve, reject) => {
-            const success = false
-            setTimeout(() => {
-                success ? resolve("Hi") : reject("Error")
-            }, 1000)
-        })
-    })
+  const { loading, error, value } = useAsync(
+    async () => {
+      const res = await fetch('/api/data');
+      return res.json();
+    },
+    [
+      /* dependencies */
+    ],
+  );
 
-    return (
-        <div>
-            <div>Loading: {loading.toString()}</div>
-            <div>{error}</div>
-            <div>{value}</div>
-        </div>
-    )
+  return (
+    <div>
+      <div>Loading: {loading}</div>
+      <div>{error}</div>
+      <div>{value}</div>
+    </div>
+  );
 }
 ```
