@@ -1,6 +1,5 @@
-# React Custom Hooks Snippets for VS Code
+# <img src="./images/icon.png" alt="drawing" width="35"/> React Custom Hooks Snippets for VS Code
 
-![Logo](./images/icon.png)
 Enhance your development workflow with this VS Code extension that offers a collection of useful React Custom hooks as code. Whether you're using JavaScript or TypeScript, this extension dynamically loads and provides snippets from external files, to fit your project needs.
 
 ## What It Does
@@ -22,7 +21,7 @@ Enhance your development workflow with this VS Code extension that offers a coll
 2. Type the snippet prefix (e.g., `useFetch`).
 3. Select the snippet from the suggestion list to insert it into your code.
 
-![Manual](./images/assets/manual.mp4)
+![Manual](./images/assets/manual.gif)
 
 ### Javascript Support With Javascript code
 
