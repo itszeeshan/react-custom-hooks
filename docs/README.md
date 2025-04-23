@@ -21,15 +21,15 @@ Enhance your development workflow with this VS Code extension that offers a coll
 2. Type the snippet prefix (e.g., `useFetch`).
 3. Select the snippet from the suggestion list to insert it into your code.
 
-![Manual](./images/assets/manual.gif)
+![Manual](../images/assets/manual.gif)
 
 ### Javascript Support With Javascript code
 
-![Javascript Support With Javascript code](./images/assets/javascript-support.png)
+![Javascript Support With Javascript code](../images/assets/javascript-support.png)
 
 ### Typescript Support With Typescript code
 
-![Typescript Support With Typescript code](./images/assets/typescript-support.png)
+![Typescript Support With Typescript code](../images/assets/typescript-support.png)
 
 ## Available Snippets
 
