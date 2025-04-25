@@ -112,10 +112,6 @@ Contributions are welcome! Please open an issue or submit a pull request if you 
 3. Make your changes and test them.
 4. Submit a pull request.
 
-## Shout Out:
-
-Thanks to [sergeyleschev](https://github.com/sergeyleschev) for creating such amazing hooks, support him the best you can because he is doing a great job!
-
 ## License
 
 This project is licensed under the MIT License. Check the [LICENSE](LICENSE) file for details.
