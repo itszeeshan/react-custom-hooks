@@ -15,6 +15,12 @@ Enhance your development workflow with this VS Code extension that offers a coll
 - `.jsx`
 - `.tsx`
 
+## How to Install
+
+1. Go to VSCode extensions section.
+2. Search for `react custom hooks`, make sure the author is `zeesec`.
+3. Press `Install` button.
+
 ## How to Use
 
 1. Open a JavaScript or TypeScript file in VS Code.
